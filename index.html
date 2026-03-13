@@ -79,13 +79,16 @@ Cote minimum :
 
 <script>
 
+<script>
+
 let matchs = [
 
-{equipe:"Real Madrid vs Barcelone", cote:1.65, type:"solide"},
-{equipe:"PSG vs Marseille", cote:2.10, type:"risque"},
-{equipe:"Lakers vs Warriors", cote:1.85, type:"solide"},
-{equipe:"Bayern vs Dortmund", cote:1.55, type:"solide"},
-{equipe:"Chelsea vs Arsenal", cote:2.40, type:"risque"}
+{sport:"⚽", equipe:"Real Madrid vs Barcelone", cote:1.65, proba:68, type:"solide"},
+{sport:"⚽", equipe:"PSG vs Marseille", cote:2.10, proba:52, type:"risque"},
+{sport:"🏀", equipe:"Lakers vs Warriors", cote:1.85, proba:60, type:"solide"},
+{sport:"⚽", equipe:"Bayern vs Dortmund", cote:1.55, proba:70, type:"solide"},
+{sport:"🏀", equipe:"Celtics vs Bulls", cote:1.95, proba:58, type:"value"},
+{sport:"🏒", equipe:"Rangers vs Bruins", cote:2.20, proba:50, type:"risque"}
 
 ];
 
@@ -102,9 +105,13 @@ if(match.cote >= coteMin){
 
 zone.innerHTML += `
 <div class="match">
-${match.equipe}<br>
+
+${match.sport} ${match.equipe}<br>
 Cote: ${match.cote}<br>
+Probabilité: ${match.proba}%<br>
+
 <span class="${match.type}">● ${match.type}</span>
+
 </div>
 `;
 
@@ -115,6 +122,3 @@ Cote: ${match.cote}<br>
 }
 
 </script>
-
-</body>
-</html>
