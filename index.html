@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Top Sports</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Sports Analyse</title>
 
 <style>
 
@@ -22,7 +22,7 @@ font-weight:bold;
 }
 
 .container{
-padding:15px;
+padding:20px;
 }
 
 .match{
@@ -30,27 +30,32 @@ background:#162447;
 margin:12px;
 padding:15px;
 border-radius:10px;
+text-align:left;
 }
 
 .solide{color:#22c55e;}
 .risque{color:#facc15;}
-.eviter{color:#ef4444;}
-.value{color:#ff7b00;}
+.value{color:#f97316;}
+
+button{
+background:#2563eb;
+border:none;
+padding:10px 20px;
+color:white;
+border-radius:8px;
+font-size:16px;
+}
 
 input{
 padding:8px;
 border-radius:6px;
 border:none;
-margin:10px;
 }
 
-button{
-padding:10px 20px;
+select{
+padding:8px;
+border-radius:6px;
 border:none;
-border-radius:8px;
-background:#2563eb;
-color:white;
-font-weight:bold;
 }
 
 </style>
@@ -58,31 +63,154 @@ font-weight:bold;
 
 <body>
 
-<header>Top Sports</header>
+<header>Top Sports Analyse</header>
 
 <div class="container">
 
-<h3>Réglage</h3>
+<h3>Réglages</h3>
 
-Cote minimum :  
+Cote minimum :
 <input id="coteMin" type="number" value="1.50" step="0.01">
 
-<br>
+<br><br>
+
+Sport :
+
+<select id="sportFiltre">
+<option value="all">Tous</option>
+<option value="⚽">Football</option>
+<option value="🏀">Basket</option>
+<option value="🏒">Hockey</option>
+<option value="🎮">Esport</option>
+</select>
+
+<br><br>
 
 <button onclick="afficherMatchs()">Analyser</button>
 
-<h3>Matchs détectés</h3>
+<h3>Matchs analysés</h3>
 
 <div id="matchs"></div>
 
 </div>
 
-  <script>
+<script>
+
 let matchs = [
 
-  {sport:"⚽", equipe:"Real Madrid vs Barcelone", cote:1.65, proba:68, type:"solide"},
-{sport:"⚽", equipe:"PSG vs Marseille", cote:2.10, proba:52, type:"risque"},
-{sport:"🏀", equipe:"Lakers vs Warriors", cote:1.85, proba:60, type:"solide"},
-{sport:"⚽", equipe:"Bayern vs Dortmund", cote:1.55, proba:70, type:"solide"},
-{sport:"🏀", equipe:"Celtics vs Bulls", cote:1.95, proba:58, type:"value"},
-{sport:"🏒", equipe:"Rangers vs Bruins", cote:2.20, proba:50, type:"risque"}
+{
+sport:"⚽",
+ligue:"Liga",
+equipe:"Real Madrid vs Barcelone",
+heure:"21:00",
+cote:1.65,
+proba:68,
+type:"solide"
+},
+
+{
+sport:"⚽",
+ligue:"Ligue 1",
+equipe:"PSG vs Marseille",
+heure:"20:45",
+cote:2.10,
+proba:52,
+type:"risque"
+},
+
+{
+sport:"🏀",
+ligue:"NBA",
+equipe:"Lakers vs Warriors",
+heure:"03:00",
+cote:1.85,
+proba:60,
+type:"solide"
+},
+
+{
+sport:"⚽",
+ligue:"Bundesliga",
+equipe:"Bayern vs Dortmund",
+heure:"18:30",
+cote:1.55,
+proba:70,
+type:"solide"
+},
+
+{
+sport:"🏀",
+ligue:"NBA",
+equipe:"Celtics vs Bulls",
+heure:"02:30",
+cote:1.95,
+proba:58,
+type:"value"
+},
+
+{
+sport:"🏒",
+ligue:"NHL",
+equipe:"Rangers vs Bruins",
+heure:"01:00",
+cote:2.20,
+proba:50,
+type:"risque"
+}
+
+];
+
+function afficherMatchs(){
+
+let coteMin = document.getElementById("coteMin").value;
+let sportFiltre = document.getElementById("sportFiltre").value;
+let zone = document.getElementById("matchs");
+
+zone.innerHTML="";
+
+matchs.forEach(match=>{
+
+if(match.cote >= coteMin){
+
+if(sportFiltre=="all" || match.sport==sportFiltre){
+
+zone.innerHTML += `
+<div class="match">
+
+${match.sport} ${match.equipe}
+
+<br>
+
+🏆 Ligue : ${match.ligue}
+
+<br>
+
+🕒 Heure : ${match.heure}
+
+<br>
+
+🎯 Cote : ${match.cote}
+
+<br>
+
+📊 Probabilité : ${match.proba} %
+
+<br>
+
+<span class="${match.type}">● ${match.type}</span>
+
+</div>
+`;
+
+}
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
