@@ -77,48 +77,12 @@ Cote minimum :
 
 </div>
 
-<script>
-
-<script>
-
+  <script>
 let matchs = [
 
-{sport:"⚽", equipe:"Real Madrid vs Barcelone", cote:1.65, proba:68, type:"solide"},
+  {sport:"⚽", equipe:"Real Madrid vs Barcelone", cote:1.65, proba:68, type:"solide"},
 {sport:"⚽", equipe:"PSG vs Marseille", cote:2.10, proba:52, type:"risque"},
 {sport:"🏀", equipe:"Lakers vs Warriors", cote:1.85, proba:60, type:"solide"},
 {sport:"⚽", equipe:"Bayern vs Dortmund", cote:1.55, proba:70, type:"solide"},
 {sport:"🏀", equipe:"Celtics vs Bulls", cote:1.95, proba:58, type:"value"},
 {sport:"🏒", equipe:"Rangers vs Bruins", cote:2.20, proba:50, type:"risque"}
-
-];
-
-function afficherMatchs(){
-
-let coteMin = document.getElementById("coteMin").value;
-let zone = document.getElementById("matchs");
-
-zone.innerHTML="";
-
-matchs.forEach(match=>{
-
-if(match.cote >= coteMin){
-
-zone.innerHTML += `
-<div class="match">
-
-${match.sport} ${match.equipe}<br>
-Cote: ${match.cote}<br>
-Probabilité: ${match.proba}%<br>
-
-<span class="${match.type}">● ${match.type}</span>
-
-</div>
-`;
-
-}
-
-});
-
-}
-
-</script>
